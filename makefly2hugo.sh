@@ -8,26 +8,19 @@ fi
 
 function process_metadata() {
   db_author=$(sed -n 's#^AUTHOR = \(.*\)$#\1#p' < "db/$1")
-  db_date=$(sed -n 's#^DATE = \(.*\)$#\1#p' < "db/$1")
   db_description=$(sed -n 's#^DESCRIPTION = \(.*\)$#\1#p' < "db/$1")
   db_keywords=$(sed -n 's#^KEYWORDS = \(.*\)$#\1#p' < "db/$1")
   db_tags=$(sed -n 's#^TAGS = \(.*\)$#\1#p' < "db/$1")
   db_title=$(sed -n 's#^TITLE = \(.*\)$#\1#p' < "db/$1")
   db_type=$(sed -n 's#^TYPE = \(.*\)$#\1#p' < "db/$1")
   # processing values
-  if test -z "$db_date"; then
-    date="$2"
-  else
-    # TODO: CHECK date
-    fixed_db_date=$(echo "$db_date" |sed 's#/#-#g')
-    #date=$(date -d "$fixed_db_date" +'%Y-%m-%dT%H:%M:%S')
-  fi
-  #echo "date = $date" >> $3 # TODO: fix
+  echo "date = ${2}" >> $3
   echo "draft = false" >> $3
   echo "title = \"${db_title}\"" >> $3
   echo "description = \"${db_description}\"" >> $3
   echo "author = \"${db_author}\"" >> $3
   echo "categories = [ \"${db_type}\" ]" >> $3
+  # TODO: keywords
   fixed_tags=$(echo "${db_tags}"|sed -e 's#,#", "#g' -e 's#^\(.*\)$#"\1"#g')
   echo "tags = [ ${fixed_tags} ]" >> $3
 }

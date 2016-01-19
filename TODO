@@ -1,5 +1,6 @@
 # TODO
 
+  * manage keywords
   * move static files from Makefly to static directory (or explain user to just take static directory and place it into Hugo)
   * process about.md file
   * process BLOG_URL with shortcode ref or refurl (from Hugo)
