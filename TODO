@@ -1,0 +1,11 @@
+# TODO
+
+  * move static files from Makefly to static directory (or explain user to just take static directory and place it into Hugo)
+  * process about.md file
+  * process BLOG_URL with shortcode ref or refurl (from Hugo)
+  * generate a specific configuration file for Hugo?
+  * gives also Makefly's base template adapted to Hugo?
+
+# Done
+
+  * read mk file and src file to create content/post for Hugo
