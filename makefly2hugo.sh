@@ -14,7 +14,7 @@ function process_metadata() {
   db_title=$(sed -n 's#^TITLE = \(.*\)$#\1#p' < "db/$1")
   db_type=$(sed -n 's#^TYPE = \(.*\)$#\1#p' < "db/$1")
   # processing values
-  echo "date = ${2}" >> $3
+  echo "date = \"${2}\"" >> $3
   echo "draft = false" >> $3
   echo "title = \"${db_title}\"" >> $3
   echo "description = \"${db_description}\"" >> $3
@@ -31,7 +31,7 @@ for item in `ls db`; do
   timestamp=`echo $item|cut -d ',' -f 1`
   mkfilename=`echo $item|cut -d ',' -f 2`
   postname=`basename $mkfilename .mk`
-  date=$(date -d "@${timestamp}" +'%Y-%m-%dT%H:%M:%S')
+  date=$(date -d "@${timestamp}" +'%Y-%m-%dT%H:%M:%S+01:00')
 
   # check if a source file exist for the given postname
   mdfile="${postname}.md"
