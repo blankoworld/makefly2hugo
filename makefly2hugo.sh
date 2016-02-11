@@ -13,6 +13,9 @@ function process_metadata() {
   db_tags=$(sed -n 's#^TAGS = \(.*\)$#\1#p' < "db/$1")
   db_title=$(sed -n 's#^TITLE = \(.*\)$#\1#p' < "db/$1")
   db_type=$(sed -n 's#^TYPE = \(.*\)$#\1#p' < "db/$1")
+  if test "$db_description" == "''"; then
+    db_description=""
+  fi
   # processing values
   echo "date = \"${2}\"" >> $3
   echo "draft = false" >> $3
